@@ -1,3 +1,10 @@
+import os
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
 books = [
 "A very tall man",
 "Colours of a rainbow",
@@ -51,4 +58,22 @@ books = [
 "Unwise Judge",
 ]
 
-for book in books: print(book)
+#Opens FF to webpage
+driver = webdriver.Firefox()
+driver.get("http://www.africanstorybook.org/")
+
+#Searches for book
+elem = driver.find_element_by_id("mainSearchInput")
+elem.send_keys(books[0])
+elem.send_keys(Keys.RETURN)
+
+#Waits until search results loaded
+elem = WebDriverWait(driver, 30).until(
+        EC.presence_of_element_located((By.ID, "storySearchId"))
+    )
+
+#Opens book searched for
+elem = driver.find_element_by_id("storySearchId")
+elem.send_keys(Keys.TAB, Keys.TAB, Keys.ENTER)
+
+#Downloads book
