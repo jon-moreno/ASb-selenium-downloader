@@ -74,6 +74,39 @@ elem = WebDriverWait(driver, 30).until(
 
 #Opens book searched for
 elem = driver.find_element_by_id("storySearchId")
-elem.send_keys(Keys.TAB, Keys.TAB, Keys.ENTER)
+#elem.send_keys(Keys.TAB, Keys.TAB, Keys.ENTER)
+elem.send_keys(Keys.TAB*2, Keys.ENTER)
 
-#Downloads book
+
+#Waits until book is loaded
+elem = WebDriverWait(driver, 30).until(
+        #EC.presence_of_element_located((By.CLASS_NAME, "menu-text"))
+        EC.presence_of_element_located((By.ID, "headerBar"))
+        #EC.presence_of_element_located((By.CLASS_NAME, "popup"))
+        #EC.presence_of_element_located((By.CLASS_NAME, "imageBlock0"))
+
+    )
+#Opens menu
+elem = driver.find_element_by_class_name("menu-text")
+elem.send_keys(Keys.TAB*2, Keys.ENTER)
+
+#Waits until menu is loaded
+elem = WebDriverWait(driver, 30).until(
+        EC.presence_of_element_located((By.ID, "accordianRelatedStories"))
+    )
+elem = driver.find_element_by_id("accordianRelatedStories")
+
+#Initiates Download
+elem.send_keys(Keys.TAB*50, Keys.ENTER)
+
+'''So WTF are there 50 tabs? Because you have to tab through the non-visible <li>
+in the menu. You can't click the download <li> directly, otherwise this would work:
+
+elem = driver.find_element_by_xpath('//*[@id="bookPanel"]/li[6]')
+elem.click()
+
+This website makes me cry inside.'''
+
+#//TODO Open FF profile that will put in correct folder
+#//Loop for every book
+#//Pray to RMS that it works
