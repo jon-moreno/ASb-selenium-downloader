@@ -76,7 +76,7 @@ driver = webdriver.Firefox(profile)
 driver.get("http://www.africanstorybook.org/")
 
 print(driver.find_element_by_class_name("searchbar"))
-print(driver.find_element_by_css_selector("form.searchbar.theme-background.searchbarHome.searchbar-active"))
+#print(driver.find_element_by_css_selector("form.searchbar.theme-background.searchbarHome.searchbar-active"))
 
 
 
@@ -114,11 +114,23 @@ except Exception as e:
     pass
 
 #print(elem)
-#elem = elem.get_attribute("onclick")
-css = "a.item-link.item-content.external.with-animation"
-elem = elem.find_element_by_css_selector(css)
+#elem = elem.find_element_by_class_name("item-link").get_attribute("onclick")
+
+try:
+    elem = elem.find_element_by_xpath('//*[@id="virtualBlock"]/ul/li/a')
+    print("Only one element")
+except Exception as e:
+    try:
+        elem = elem.find_element_by_xpath('a//*[@id="virtualBlock"]/ul/li[1]/a')
+        print("There are multiple elements")
+    except Exception as e:
+        raise e
+
+
+#css = "a.item-link.item-content.external.with-animation"
+#elem = elem.find_element_by_css_selector(css)
 #elem = elem.find_element_by_class_name("item-link.item-content.external.with-animation")
-print(elem)
+print(elem.get_attribute("onclick"))
 
 #http://www.africanstorybook.org/read/downloadbook.php?id=19760&d=0&a=1&layout=landscape
 #http://www.africanstorybook.org/read/downloadbook.php?id={ID}&d=0&a=1&layout=landscape
