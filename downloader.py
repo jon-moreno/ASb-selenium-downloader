@@ -75,76 +75,60 @@ profile = webdriver.FirefoxProfile('/home/jon-moreno/.mozilla/firefox/c7r83610.t
 driver = webdriver.Firefox(profile)
 driver.get("http://www.africanstorybook.org/")
 
-#Searches for book
-elem = driver.find_element_by_id("mainSearchInput")
+print(driver.find_element_by_class_name("searchbar"))
+print(driver.find_element_by_css_selector("form.searchbar.theme-background.searchbarHome.searchbar-active"))
+
+
+
+#Performs initial search
+try:
+    elem = WebDriverWait(driver, 35).until(
+        EC.presence_of_element_located((By.ID, "mainSearchInput"))
+    )
+    print("First Search Bar Located")
+except Exception as e:
+    pass
+
+#elem = driver.find_element_by_id("mainSearchInput")
 elem.send_keys(books[0])
 elem.send_keys(Keys.ENTER)
 
-#Waits until search results loaded
+#Waits for new search bar
 try:
     elem = WebDriverWait(driver, 35).until(
         EC.presence_of_element_located((By.ID, "storySearchId"))
     )
+    print("Second Search Bar Located")
 except Exception as e:
     pass
 
+#print(elem)
 
-#Opens book searched for
-elem = driver.find_element_by_id("storySearchId")
-#elem.send_keys(Keys.TAB, Keys.TAB, Keys.ENTER)
-elem.send_keys(Keys.TAB*2, Keys.ENTER)
-
-
-#Waits until book is loaded
-elem = WebDriverWait(driver, 30).until(
-        #EC.presence_of_element_located((By.CLASS_NAME, "menu-text"))
-        EC.presence_of_element_located((By.ID, "headerBar"))
-        #EC.presence_of_element_located((By.CLASS_NAME, "popup"))
-        #EC.presence_of_element_located((By.CLASS_NAME, "imageBlock0"))
-
+#Waits for search results
+try:
+    elem = WebDriverWait(driver, 35).until(
+        EC.presence_of_element_located((By.CLASS_NAME, "item-link"))
     )
+    print("Search Results Located")
+except Exception as e:
+    pass
 
-'''
-#Opens menu
-elem = driver.find_element_by_class_name("menu-text")
-elem.send_keys(Keys.TAB*2, Keys.ENTER)
+#print(elem)
+#elem = elem.get_attribute("onclick")
+css = "a.item-link.item-content.external.with-animation"
+elem = elem.find_element_by_css_selector(css)
+#elem = elem.find_element_by_class_name("item-link.item-content.external.with-animation")
+print(elem)
 
-#Waits until menu is loaded
-elem = WebDriverWait(driver, 30).until(
-        EC.presence_of_element_located((By.ID, "accordianRelatedStories"))
-    )
-elem = driver.find_element_by_id("accordianRelatedStories")
-
-#Initiates Download
-elem.send_keys(Keys.TAB*50, Keys.ENTER)
-'''
-
-'''So WTF are there 50 tabs? Because you have to tab through the non-visible <li>
-in the menu. You can't click the download <li> directly, otherwise this would work:
-
-elem = driver.find_element_by_xpath('//*[@id="bookPanel"]/li[6]')
-elem.click()
-
-This website makes me cry inside.'''
-
-'''
-#Goes back to search
-elem = driver.find_element_by_id("storySearchId")
-elem.clear()
-elem.send_keys(books[1])
-elem.send_keys(Keys.ENTER)
-elem.send_keys(Keys.TAB*2, Keys.ENTER)'''
-
-
-elem = driver.find_element_by_class_name("left")
-elem.send_keys(Keys.ENTER)
-'''
-elem = driver.find_element_by_class_name("back")
-elem.click()
-
-elem = driver.find_element_by_class_name("back.link.icon-only")
-elem.click()'''
+#http://www.africanstorybook.org/read/downloadbook.php?id=19760&d=0&a=1&layout=landscape
+#http://www.africanstorybook.org/read/downloadbook.php?id={ID}&d=0&a=1&layout=landscape
 
 #//TODO Open FF profile that will put in correct folder
 #//Loop for every book
 #//Pray to RMS that it works
+
+'''
+css=tag#id[attribute=’value’]
+css=tag.classname[attribute=’value’]
+'''
+
