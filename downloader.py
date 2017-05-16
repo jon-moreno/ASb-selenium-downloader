@@ -138,6 +138,12 @@ elem.send_keys(Keys.TAB*2, Keys.ENTER)'''
 
 elem = driver.find_element_by_class_name("left")
 elem.send_keys(Keys.ENTER)
+
+elem.get_attribute("onclick")
+
+#http://www.africanstorybook.org/read/downloadbook.php?id=19760&d=0&a=1&layout=landscape
+#http://www.africanstorybook.org/read/downloadbook.php?id={ID}&d=0&a=1&layout=landscape
+
 '''
 elem = driver.find_element_by_class_name("back")
 elem.click()
