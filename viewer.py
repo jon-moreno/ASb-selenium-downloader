@@ -8,57 +8,57 @@ from selenium.webdriver.support import expected_conditions as EC
 
 books = [
 ###LEVEL 1###
-"A very tall man",
-"Colours of a rainbow",
-"Frog and Snake",
-"Friends",
-"How tortoise got a crooked nose",
-"Hyena, Hare and basins",
-"Lazy Anansi",
-"Monkey and the drought",
-"Palm tree",
-"Porridge",
-"Which work is the most important?",
-"Chicken and Millipede",
+#"A very tall man",
+#"Colours of a rainbow",
+#"Frog and Snake",
+#"Friends",
+#"How tortoise got a crooked nose",
+#"Hyena, Hare and basins",
+#"Lazy Anansi", #
+#"Monkey and the drought",
+#"Palm tree",
+#"Porridge",
+#"Which work is the most important?",
+#"Chicken and Millipede", #
 ###LEVEL 2###
-"Africa Unity Race",
-"Azizi the doll",
-"Big blue bus",
-"Curious Baby Elephant",
-"Death visits Hupapa",
-"Fire's story",
-"Goat, Dog and Cow",
-"Hamisi's lucky day",
-"Jaaka the fisherman",
-"My family and I",
-"Ostrich and Lioness",
-"Selemeng's cats",
-"The day the sun went away",
-"Two little friends",
-"Two thieves",
-"Why Ajao was not buried",
-"Wind",
+#"Africa Unity Race",
+#"Azizi the doll",
+#"Big blue bus", #
+#"Curious Baby Elephant", #
+#"Death visits Hupapa",
+#"Fire's story",
+#"Goat, Dog and Cow", #
+#"Hamisi's lucky day",
+#"Jaaka the fisherman",
+#"My family and I",
+#"Ostrich and Lioness",
+#"Selemeng's cats",
+#"The day the sun went away",
+#"Two little friends",
+#"Two thieves",
+#"Why Ajao was not buried",
+#"Wind", #
 ###LEVEL 3###
-"Adun, the beautiful",
-"Beloved daughter",
-"Byantaka and the dead pot",
-"Creature with two",
-"Crushed louse",
-"Fox and Rooster",
-"Goat and Hyena's knife",
-"Holidays with grandmother",
-"Hyena and Tortoise",
-"Kalabushe the talkative",
-"Maguru gives legs",
-"Pontshibobo's tree",
-"The girl who got rich",
-"Thunder and Lightning",
+#"Adun, the beautiful",
+#"Beloved daughter", #
+#"Byantaka and the dead pot",
+#"Creature with two",
+#"Crushed louse",
+#"Fox and Rooster",
+#"Goat and Hyena's knife",
+#"Holidays with grandmother",
+#"Hyena and Tortoise", #
+#"Kalabushe the talkative",
+#"Maguru gives legs",
+#"Pontshibobo's tree",
+#"The girl who got rich",
+#"Thunder and Lightning",
 ###LEVEL 4###
-"Counting cabbages",
-"Hare and Hyena",
+"Counting cabbages", #
+"Hare and Hyena", #
 "King Kayanja and his daughter",
-"Magozwe",
-"Share it fair",
+"Magozwe", #
+"Share it fair", #
 "What Vusi's sister said",
 ###LEVEL 5###
 "Unwise Judge",
@@ -136,11 +136,11 @@ for book in books:
             #bookID = bookID.lstrip('loadBook(').rstrip(");").split(",")
             bookID = int(bookID[0])
             
-            #'''
+            '''
             url = "http://www.africanstorybook.org/read/downloadbook.php?id={}&d=0&a=1&layout=landscape".format(bookID)
             driver.get(url)
             driver.switch_to_alert().accept()
-            #'''
+            '''
 
             #http://www.africanstorybook.org/read/downloadbook.php?id=19760&d=0&a=1&layout=landscape
             #file = urllib.URLopener()
